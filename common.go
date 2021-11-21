@@ -274,6 +274,11 @@ type ConnectionState struct {
 	// RFC 7627, and https://mitls.org/pages/attacks/3SHAKE#channelbindings.
 	TLSUnique []byte
 
+	// Hacky messages to support rippled's use of openssl's
+	// SSL_get_finished and SSL_get_peer_finished API
+	ClientFinishedMessage []byte
+	ServerFinishedMessage []byte
+
 	// ekm is a closure exposed via ExportKeyingMaterial.
 	ekm func(label string, context []byte, length int) ([]byte, error)
 }
